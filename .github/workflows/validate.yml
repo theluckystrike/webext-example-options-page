@@ -1,0 +1,36 @@
+name: Validate Extension
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Validate manifest.json
+        run: |
+          cat src/manifest.json | python3 -m json.tool > /dev/null
+          echo "✓ manifest.json valid"
+          
+      - name: Check options page
+        run: |
+          python3 << 'EOF'
+          import json
+          with open('src/manifest.json') as f:
+              m = json.load(f)
+          if 'options_page' in m:
+              print("✓ Options page configured:", m['options_page'])
+          else:
+              print("⚠ No options_page (optional)")
+          EOF
+          
+      - name: Verify files
+        run: |
+          [ -f "src/options.html" ] && echo "✓ options.html"
+          [ -f "src/options.js" ] && echo "✓ options.js"

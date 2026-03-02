@@ -1,0 +1,19 @@
+{
+  "name": "webext-example-options-page",
+  "version": "1.0.0",
+  "description": "A Chrome extension demonstrating options/settings page",
+  "author": "Zovo <hello@zovo.one>",
+  "license": "MIT",
+  "scripts": {
+    "build": "echo 'No build required'",
+    "test": "echo 'No tests yet'"
+  },
+  "keywords": [
+    "chrome-extension",
+    "options-page",
+    "settings",
+    "tutorial",
+    "beginner",
+    "manifest-v3"
+  ]
+}
